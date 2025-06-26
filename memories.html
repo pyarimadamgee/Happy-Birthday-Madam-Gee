@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Birthday ❤️</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        /* 🔇 Mute Button Styling */
+        .mute-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 45px;
+            height: 45px;
+            border: none;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.85);
+            color: #333;
+            font-size: 22px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .mute-btn:hover {
+            background-color: white;
+        }
+
+        /* 🎥 Video Style */
+        .gallery video {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery video:hover {
+            transform: scale(1.1);
+        }
+
+        /* 🎈 Floating Animations */
+        @keyframes floaty {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Individual animation for each element */
+        .main-container h1 {
+            animation: floaty 3s ease-in-out infinite;
+            animation-delay: 0s;
+        }
+
+        .main-container p {
+            animation: floaty 4s ease-in-out infinite;
+            animation-delay: 0.3s;
+        }
+
+        .gallery {
+            animation: floaty 5s ease-in-out infinite;
+            animation-delay: 0.6s;
+        }
+
+        .main-container button {
+            animation: floaty 6s ease-in-out infinite;
+            animation-delay: 1s;
+        }
+    </style>
+
+</head>
+
+<body class="memories-page">
+    <div class="navbar">
+        <div class="scrolling-text">
+            <span class="full-text">🎉 Happy Birthday To You 🎉</span>
+            <span class="full-text">🎉 Happy Birthday To You 🎉</span>
+            <span class="full-text">🎉 Happy Birthday To You 🎉</span>
+
+            <span class="short-text">🎉 Happy Birthday 🎉</span>
+            <span class="short-text">🎉 Happy Birthday 🎉</span>
+            <span class="short-text">🎉 Happy Birthday 🎉</span>
+        </div>
+    </div>
+
+    <!-- 🎵 Background Music -->
+    <audio id="bgMusic" autoplay loop>
+        <source src="birthday.mp3" type="audio/mpeg" />
+    </audio>
+
+    <!-- 🖼️ CONTENT BOX -->
+    <div class="container main-container" id="mainContent">
+        <h1 class="glow">💫 Our Best Moments</h1>
+        <p class="sub shiny-line" style="color: black;">Some unforgettable memories 🥰</p>
+        <div class="gallery">
+            <img src="img2.jpg" alt="Memory 2" onclick="openModal(this)" />
+            <img src="img1.jpg" alt="Memory 2" onclick="openModal(this)" />
+            <video src="1.mp4" onclick="openModal(this)" controls muted autoplay loop></video>
+        </div>
+        <button onclick="location.href='finish.html'">Click to Finish</button>
+    </div>
+
+    <!-- 🔍 MODAL -->
+    <div id="image-modal" class="image-modal" onclick="closeModal()">
+        <img id="modal-img" alt="preview" style="display: none;" />
+        <video id="modal-video" controls style="display: none; max-width: 90%; border-radius: 20px;"></video>
+    </div>
+
+    <!-- 🔇 MUTE BUTTON -->
+    <button class="mute-btn" onclick="toggleMute()" id="muteBtn">🔊</button>
+
+    <!-- 🔧 SCRIPT -->
+    <script>
+        const modal = document.getElementById("image-modal");
+        const modalImg = document.getElementById("modal-img");
+        const modalVideo = document.getElementById("modal-video");
+        const mainContent = document.getElementById("mainContent");
+
+        function openModal(media) {
+            modal.style.display = "flex";
+            mainContent.style.display = "none";
+
+            const src = media.src;
+
+            if (src.endsWith(".mp4")) {
+                modalImg.style.display = "none";
+                modalVideo.style.display = "block";
+                modalVideo.src = src;
+                modalVideo.play();
+            } else {
+                modalVideo.style.display = "none";
+                modalVideo.pause();
+                modalImg.style.display = "block";
+                modalImg.src = src;
+            }
+        }
+
+        function closeModal() {
+            modal.style.display = "none";
+            mainContent.style.display = "block";
+            modalVideo.pause();
+        }
+
+        // Mute Button Logic
+        const bgMusic = document.getElementById("bgMusic");
+        const muteBtn = document.getElementById("muteBtn");
+
+        function toggleMute() {
+            bgMusic.muted = !bgMusic.muted;
+            muteBtn.textContent = bgMusic.muted ? "🔇" : "🔊";
+        }
+    </script>
+    <script>
+        const bodyClass = document.body.className;
+        const navbar = document.querySelector('.navbar');
+
+        const navbarStyles = {
+            "main-page": "linear-gradient(90deg, #2c003e, #6a1b9a)",
+            "memories-page": "linear-gradient(90deg, #7b1fa2, #ba68c8)",
+            "finish-page": "linear-gradient(90deg, #6a1b9a, #25d6bf)",
+            "final-page": "linear-gradient(90deg, #fcb69f, #ff6ec4)",
+            "danger-page": "linear-gradient(90deg, #3a0000, #7b0000)"
+        };
+
+        if (navbar && navbarStyles[bodyClass]) {
+            navbar.style.background = navbarStyles[bodyClass];
+        }
+    </script>
+
+
+</body>
+
+</html>

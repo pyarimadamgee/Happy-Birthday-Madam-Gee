@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <title>Warning ⚠️</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+
+<body class="danger-page">
+    <!-- Audio: plays once -->
+    <audio id="warning-audio">
+        <source src="warning.unknown" type="audio/mpeg" />
+    </audio>
+
+    <div class="container danger-container content-block" style="border-color: red;">
+        <h1 class="glow" style="color: azure;">🚨 Warning 🚨</h1>
+        <p class="sub shiny-line">This is a highly explosive Website... Click if you dare</p>
+        <button onclick="blastAndGo()" style="background-color: brown;">Enter ⚠️</button>
+    </div>
+
+    <div id="blast"></div>
+
+    <script>
+        // TRY playing audio on load
+        window.addEventListener("DOMContentLoaded", () => {
+            const audio = document.getElementById('warning-audio');
+            audio.loop = false;
+
+            // Try to play immediately
+            audio.play().catch(() => {
+                // If blocked by browser, wait for user interaction
+                const playOnce = () => {
+                    audio.play();
+                    document.removeEventListener('click', playOnce);
+                };
+                document.addEventListener('click', playOnce);
+            });
+        });
+
+        // Blast animation then go
+        function blastAndGo() {
+            const blast = document.getElementById('blast');
+            blast.classList.add('explode');
+            setTimeout(() => {
+                window.location.href = 'main.html';
+            }, 600);
+        }
+    </script>
+</body>
+
+</html>

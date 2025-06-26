@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Birthday ❤️</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        /* 🔇 Mute Button Styling */
+        .mute-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 45px;
+            height: 45px;
+            border: none;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.85);
+            color: #333;
+            font-size: 22px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .mute-btn:hover {
+            background-color: white;
+        }
+
+        /* 🎈 Floating Animation */
+        @keyframes floaty {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .main-container img {
+            animation: floaty 4s ease-in-out infinite;
+        }
+
+        .main-container h1 {
+            animation: floaty 3.5s ease-in-out infinite;
+            animation-delay: 0.3s;
+        }
+
+        .main-container p {
+            animation: floaty 5s ease-in-out infinite;
+            animation-delay: 0.6s;
+        }
+
+        .main-container u {
+            animation: floaty 6s ease-in-out infinite;
+            animation-delay: 1s;
+        }
+    </style>
+</head>
+
+<body class="finish-page">
+    <div class="navbar">
+        <div class="scrolling-text">
+            <span class="full-text">🎉 Happy Birthday To You 🎉</span>
+            <span class="full-text">🎉 Happy Birthday To You 🎉</span>
+            <span class="full-text">🎉 Happy Birthday To You 🎉</span>
+
+            <span class="short-text">🎉 Happy Birthday 🎉</span>
+            <span class="short-text">🎉 Happy Birthday 🎉</span>
+            <span class="short-text">🎉 Happy Birthday 🎉</span>
+        </div>
+    </div>
+
+    <!-- 🎵 Audio -->
+    <audio id="bgMusic" autoplay loop>
+        <source src="birthday.mp3" type="audio/mpeg" />
+    </audio>
+
+    <!-- 🎉 Final Container -->
+    <div class="container main-container" id="mainContent">
+        <img src="img1.jpg" alt="Friends" style="height: 30vh; border-radius: 20px; cursor: pointer;"
+            onclick="openModal(this)" />
+        <h1 class="glow">Happy Birthday</h1>
+        <p class="sub shiny-line" style="color: black;">
+            May every step you take be blessed with success & every effort crowned with fulfillment. ❤️
+        </p>
+        <u class="glow" style="color: blue; font-size: medium;">Best Wishes by Mr Developer.</u>
+    </div>
+
+    <!-- 🔍 Modal -->
+    <div id="image-modal" class="image-modal" onclick="closeModal()">
+        <img id="modal-img" alt="preview" style="display: none;" />
+    </div>
+
+    <!-- 🔇 Mute Button -->
+    <button class="mute-btn" onclick="toggleMute()" id="muteBtn">🔊</button>
+
+    <!-- 🧠 Script -->
+    <script>
+        const modal = document.getElementById("image-modal");
+        const modalImg = document.getElementById("modal-img");
+        const mainContent = document.getElementById("mainContent");
+        const bgMusic = document.getElementById("bgMusic");
+        const muteBtn = document.getElementById("muteBtn");
+
+        function openModal(media) {
+            modal.style.display = "flex";
+            mainContent.style.display = "none";
+            modalImg.src = media.src;
+            modalImg.style.display = "block";
+        }
+
+        function closeModal() {
+            modal.style.display = "none";
+            mainContent.style.display = "block";
+            modalImg.style.display = "none";
+        }
+
+        function toggleMute() {
+            bgMusic.muted = !bgMusic.muted;
+            muteBtn.textContent = bgMusic.muted ? "🔇" : "🔊";
+        }
+    </script>
+    <script>
+        const bodyClass = document.body.className;
+        const navbar = document.querySelector('.navbar');
+
+        const navbarStyles = {
+            "main-page": "linear-gradient(90deg, #2c003e, #6a1b9a)",
+            "memories-page": "linear-gradient(90deg, #7b1fa2, #ba68c8)",
+            "finish-page": "linear-gradient(90deg, #6a1b9a, #25d6bf)",
+            "final-page": "linear-gradient(90deg, #fcb69f, #ff6ec4)",
+            "danger-page": "linear-gradient(90deg, #3a0000, #7b0000)"
+        };
+
+        if (navbar && navbarStyles[bodyClass]) {
+            navbar.style.background = navbarStyles[bodyClass];
+        }
+    </script>
+
+
+
+</body>
+
+</html>
