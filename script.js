@@ -82,7 +82,15 @@ function initConfetti() {
   const size = () => { canvas.width = innerWidth; canvas.height = innerHeight; };
   size();
   addEventListener('resize', size);
+  let needsClear = false;
   (function loop() {
+    if (confettiPieces.length === 0) {
+      /* idle: nothing to animate — skip all work */
+      if (needsClear) { confettiCtx.clearRect(0, 0, canvas.width, canvas.height); needsClear = false; }
+      requestAnimationFrame(loop);
+      return;
+    }
+    needsClear = true;
     confettiCtx.clearRect(0, 0, canvas.width, canvas.height);
     confettiPieces.forEach(p => {
       p.x += p.vx; p.y += p.vy; p.rot += p.vr;
