@@ -1,153 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Happy Birthday ❤️</title>
-    <link rel="stylesheet" href="style.css" />
-    <style>
-        /* 🔇 Mute Button Styling */
-        .mute-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 45px;
-            height: 45px;
-            border: none;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.85);
-            color: #333;
-            font-size: 22px;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background-color 0.3s ease;
-        }
-
-        .mute-btn:hover {
-            background-color: white;
-        }
-
-        /* 🎈 Floating Animation */
-        @keyframes floaty {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        .main-container img {
-            animation: floaty 4s ease-in-out infinite;
-        }
-
-        .main-container h1 {
-            animation: floaty 3.5s ease-in-out infinite;
-            animation-delay: 0.3s;
-        }
-
-        .main-container p {
-            animation: floaty 5s ease-in-out infinite;
-            animation-delay: 0.6s;
-        }
-
-        .main-container u {
-            animation: floaty 6s ease-in-out infinite;
-            animation-delay: 1s;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Forever 21, Amna 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💖</text></svg>">
+  <link rel="stylesheet" href="style.css" />
 </head>
 
-<body class="finish-page">
-    <div class="navbar">
-        <div class="scrolling-text">
-            <span class="full-text">🎉 Happy Birthday To You 🎉</span>
-            <span class="full-text">🎉 Happy Birthday To You 🎉</span>
-            <span class="full-text">🎉 Happy Birthday To You 🎉</span>
-
-            <span class="short-text">🎉 Happy Birthday 🎉</span>
-            <span class="short-text">🎉 Happy Birthday 🎉</span>
-            <span class="short-text">🎉 Happy Birthday 🎉</span>
-        </div>
+<body>
+  <div class="banner">
+    <div class="scrolling-text">
+      <span>💖 Happy 21st Birthday Amna 💖</span>
+      <span>🎀 Your bestie's got you 🎀</span>
+      <span>💖 Happy 21st Birthday Amna 💖</span>
+      <span>🎀 Your bestie's got you 🎀</span>
     </div>
+  </div>
 
-    <!-- 🎵 Audio -->
-    <audio id="bgMusic" autoplay loop>
-        <source src="birthday.mp3" type="audio/mpeg" />
-    </audio>
+  <audio id="bgMusic" autoplay loop><source src="birthday.mp3" type="audio/mpeg" /></audio>
 
-    <!-- 🎉 Final Container -->
-    <div class="container main-container" id="mainContent">
-        <img src="img1.jpg" alt="Friends" style="height: 30vh; border-radius: 20px; cursor: pointer;"
-            onclick="openModal(this)" />
-        <h1 class="glow">Happy Birthday</h1>
-        <p class="sub shiny-line" style="color: black;">
-            May every step you take be blessed with success & every effort crowned with fulfillment. ❤️
-        </p>
-        <u class="glow" style="color: blue; font-size: medium;">Best Wishes by Mr Developer.</u>
-    </div>
+  <div class="card">
+    <h1 class="title">Happy 21st Birthday</h1>
+    <span class="name-glow">AMNA ❤️</span>
+    <p class="sub">
+      May every step you take be blessed with success,
+      and every dream find its way to you. 🌸<br>
+      Whenever you doubt yourself, come back to this little website
+      and remember — <b>you never have to say a word. I'll know.</b> 🥹🫶
+    </p>
+    <p class="sub script" style="font-size:1.5rem;color:var(--hotpink);">
+      — Farhan 🫶
+    </p>
+    <button class="btn" onclick="sendHug()" style="background:linear-gradient(90deg,#ff9a3d,var(--hotpink));">Claim your birthday hug 🤗</button>
+    <br>
+    <button class="btn" onclick="location.href='end.html'">One last thing… 💝</button>
+  </div>
 
-    <!-- 🔍 Modal -->
-    <div id="image-modal" class="image-modal" onclick="closeModal()">
-        <img id="modal-img" alt="preview" style="display: none;" />
-    </div>
+  <div class="hug-overlay" id="hugOverlay" onclick="this.classList.remove('show')">
+    <img src="https://media1.tenor.com/m/PXKZhCEfEfsAAAAC/bubu-bubu-dudu.gif" alt="Bubu hugging Dudu"
+      style="width:180px;border-radius:24px;box-shadow:0 12px 30px rgba(255,61,139,0.4);" />
+    <div class="hug-text">Consider yourself hugged, pookie!</div>
+    <p class="sub" style="color:var(--deep);">This hug is valid forever. No expiry date. 🩷<br><small>(tap anywhere to keep it)</small></p>
+  </div>
 
-    <!-- 🔇 Mute Button -->
-    <button class="mute-btn" onclick="toggleMute()" id="muteBtn">🔊</button>
+  <button class="mute-btn" id="muteBtn">🔊</button>
 
-    <!-- 🧠 Script -->
-    <script>
-        const modal = document.getElementById("image-modal");
-        const modalImg = document.getElementById("modal-img");
-        const mainContent = document.getElementById("mainContent");
-        const bgMusic = document.getElementById("bgMusic");
-        const muteBtn = document.getElementById("muteBtn");
+  <script src="script.js"></script>
+  <script>
+    /* extra hearts + confetti rain for the finale 💗 */
+    window.addEventListener('load', () => {
+      spawnFloaters(22);
+      setTimeout(() => confettiBurst(260), 500);
+      setInterval(() => confettiBurst(60), 5000);
+    });
 
-        function openModal(media) {
-            modal.style.display = "flex";
-            mainContent.style.display = "none";
-            modalImg.src = media.src;
-            modalImg.style.display = "block";
-        }
-
-        function closeModal() {
-            modal.style.display = "none";
-            mainContent.style.display = "block";
-            modalImg.style.display = "none";
-        }
-
-        function toggleMute() {
-            bgMusic.muted = !bgMusic.muted;
-            muteBtn.textContent = bgMusic.muted ? "🔇" : "🔊";
-        }
-    </script>
-    <script>
-        const bodyClass = document.body.className;
-        const navbar = document.querySelector('.navbar');
-
-        const navbarStyles = {
-            "main-page": "linear-gradient(90deg, #2c003e, #6a1b9a)",
-            "memories-page": "linear-gradient(90deg, #7b1fa2, #ba68c8)",
-            "finish-page": "linear-gradient(90deg, #6a1b9a, #25d6bf)",
-            "final-page": "linear-gradient(90deg, #fcb69f, #ff6ec4)",
-            "danger-page": "linear-gradient(90deg, #3a0000, #7b0000)"
-        };
-
-        if (navbar && navbarStyles[bodyClass]) {
-            navbar.style.background = navbarStyles[bodyClass];
-        }
-    </script>
-
-
-
+    function sendHug() {
+      document.getElementById('hugOverlay').classList.add('show');
+      confettiBurst(200);
+    }
+  </script>
 </body>
-
 </html>

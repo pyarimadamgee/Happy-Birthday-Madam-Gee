@@ -1,149 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Happy Birthday ❤️</title>
-    <link rel="stylesheet" href="style.css" />
-    <style>
-        /* 🔇 Mute Button Styling */
-        .mute-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 45px;
-            height: 45px;
-            border: none;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.85);
-            color: #333;
-            font-size: 22px;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background-color 0.3s ease;
-        }
-
-        .mute-btn:hover {
-            background-color: white;
-        }
-
-        /* 🎥 Video Style */
-        .gallery video {
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
-            border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease;
-            cursor: pointer;
-        }
-
-        .gallery video:hover {
-            transform: scale(1.1);
-        }
-
-        /* 🎈 Floating Animations */
-        @keyframes floaty {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        /* Individual animation for each element */
-        .main-container h1 {
-            animation: floaty 3s ease-in-out infinite;
-            animation-delay: 0s;
-        }
-
-        .main-container p {
-            animation: floaty 4s ease-in-out infinite;
-            animation-delay: 0.3s;
-        }
-
-        .gallery {
-            animation: floaty 5s ease-in-out infinite;
-            animation-delay: 0.6s;
-        }
-
-        .main-container button {
-            animation: floaty 6s ease-in-out infinite;
-            animation-delay: 1s;
-        }
-    </style>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Make a Wish, Amna 🎂</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎂</text></svg>">
+  <link rel="stylesheet" href="style.css" />
 </head>
 
-<body class="final-page">
-    <div class="navbar">
-        <div class="scrolling-text">
-            <span class="full-text">🎉 Happy Birthday To You 🎉</span>
-            <span class="full-text">🎉 Happy Birthday To You 🎉</span>
-            <span class="full-text">🎉 Happy Birthday To You 🎉</span>
-
-            <span class="short-text">🎉 Happy Birthday 🎉</span>
-            <span class="short-text">🎉 Happy Birthday 🎉</span>
-            <span class="short-text">🎉 Happy Birthday 🎉</span>
-        </div>
+<body>
+  <div class="banner">
+    <div class="scrolling-text">
+      <span>🎂 Make a wish, Amna 🎂</span>
+      <span>✨ Blow out all 21 candles ✨</span>
+      <span>🎂 Make a wish, Amna 🎂</span>
+      <span>✨ Blow out all 21 candles ✨</span>
     </div>
+  </div>
 
-    <!-- 🎵 Background Music -->
-    <audio id="bgMusic" autoplay loop>
-        <source src="birthday.mp3" type="audio/mpeg" />
-    </audio>
+  <audio id="bgMusic" autoplay loop><source src="birthday.mp3" type="audio/mpeg" /></audio>
 
-    <!-- 🎉 Content -->
-    <div class="container main-container">
-        <h1 class="glow">💖 You're Special 💖</h1>
-        <p class="final-text shiny-line" style="font-size: large;">
-            May this year bring you endless happiness and adventure. Happy Birthday My Friend 🎂🎁
-        </p>
-        <button onclick="location.href='final.html'">See Surprise 🎊</button>
+  <div class="card">
+    <h1 class="title">Make a Wish 🎂</h1>
+    <p class="sub">Blow out all <b>21</b> candles, birthday girl — tap them! 💨</p>
+
+    <div class="cake">
+      <div class="candles" id="candles"></div>
+      <div class="layer top"></div>
+      <div class="layer mid"></div>
+      <div class="layer bottom"></div>
+      <div class="plate"></div>
     </div>
+    <p class="candles-left"><span id="left">21</span> candles still burning 🔥</p>
+    <button class="btn" onclick="blowAll()">Blow them all 💨</button>
 
-    <!-- 🔇 Mute Button -->
-    <button class="mute-btn" onclick="toggleMute()" id="muteBtn">🔊</button>
+    <div class="wish-reveal" id="wishBox">
+      <div class="inner">
+        <span class="script" style="font-size:1.7rem;color:var(--hotpink);">Your wish is on its way! ✨</span><br>
+        May 21 bring you everything you've been dreaming of, Amna —
+        endless giggles, big adventures, and all the happiness your heart can hold. 🩷
+      </div>
+      <button class="btn" onclick="location.href='final.html'">There's more… 💌</button>
+    </div>
+  </div>
 
-    <!-- 🔧 Script -->
-    <script>
-        const bgMusic = document.getElementById("bgMusic");
-        const muteBtn = document.getElementById("muteBtn");
+  <button class="mute-btn" id="muteBtn">🔊</button>
 
-        function toggleMute() {
-            bgMusic.muted = !bgMusic.muted;
-            muteBtn.textContent = bgMusic.muted ? "🔇" : "🔊";
-        }
-    </script>
-    <script>
-        const bodyClass = document.body.className;
-        const navbar = document.querySelector('.navbar');
+  <script src="script.js"></script>
+  <script>
+    const candlesBox = document.getElementById('candles');
+    const leftEl = document.getElementById('left');
+    let lit = 21;
 
-        const navbarStyles = {
-            "main-page": "linear-gradient(90deg, #2c003e, #6a1b9a)",
-            "memories-page": "linear-gradient(90deg, #7b1fa2, #ba68c8)",
-            "finish-page": "linear-gradient(90deg, #6a1b9a, #25d6bf)",
-            "final-page": "linear-gradient(90deg, #fcb69f, #ff6ec4)",
-            "danger-page": "linear-gradient(90deg, #3a0000, #7b0000)"
-        };
+    for (let i = 0; i < 21; i++) {
+      const c = document.createElement('div');
+      c.className = 'candle';
+      c.innerHTML = '<div class="flame"></div>';
+      c.addEventListener('click', () => blowOne(c));
+      candlesBox.appendChild(c);
+    }
 
-        if (navbar && navbarStyles[bodyClass]) {
-            navbar.style.background = navbarStyles[bodyClass];
-        }
-    </script>
+    function blowOne(c) {
+      if (c.classList.contains('out')) return;
+      c.classList.add('out');
+      lit--;
+      leftEl.textContent = lit;
+      if (lit === 0) {
+        document.getElementById('wishBox').classList.add('show');
+        confettiBurst(300);
+      }
+    }
 
-    </script>
-
-
+    function blowAll() {
+      [...document.querySelectorAll('.candle:not(.out)')]
+        .forEach((c, i) => setTimeout(() => blowOne(c), i * 110));
+    }
+  </script>
 </body>
-
 </html>

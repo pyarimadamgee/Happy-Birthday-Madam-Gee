@@ -1,126 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Happy Birthday ❤️</title>
-    <link rel="stylesheet" href="style.css" />
-    <style>
-        /* 🔇 Mute Button Styling */
-        .mute-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 45px;
-            height: 45px;
-            border: none;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.85);
-            color: #333;
-            font-size: 22px;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background-color 0.3s ease;
-        }
-
-        .mute-btn:hover {
-            background-color: white;
-        }
-
-        /* 🎈 Floating animation */
-        @keyframes floaty {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        .main-container h1 {
-            animation: floaty 3s ease-in-out infinite;
-        }
-
-        .main-container p {
-            animation: floaty 4s ease-in-out infinite;
-            animation-delay: 0.4s;
-        }
-
-        .main-container button {
-            animation: floaty 5s ease-in-out infinite;
-            animation-delay: 0.8s;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Letter For You, Amna 💌</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💌</text></svg>">
+  <link rel="stylesheet" href="style.css" />
 </head>
 
-<body class="main-page">
-    <div class="navbar">
-        <div class="scrolling-text">
-            <span class="full-text">🎉 Happy Birthday To You 🎉</span>
-            <span class="full-text">🎉 Happy Birthday To You 🎉</span>
-            <span class="full-text">🎉 Happy Birthday To You 🎉</span>
-
-            <span class="short-text">🎉 Happy Birthday 🎉</span>
-            <span class="short-text">🎉 Happy Birthday 🎉</span>
-            <span class="short-text">🎉 Happy Birthday 🎉</span>
-        </div>
+<body>
+  <div class="banner">
+    <div class="scrolling-text">
+      <span>💌 A letter for the birthday girl 💌</span>
+      <span>🩷 For Amna's eyes only 🩷</span>
+      <span>💌 A letter for the birthday girl 💌</span>
+      <span>🩷 For Amna's eyes only 🩷</span>
     </div>
+  </div>
 
+  <audio id="bgMusic" autoplay loop><source src="birthday.mp3" type="audio/mpeg" /></audio>
 
-    <!-- 🎵 Background Music -->
-    <audio id="bgMusic" autoplay loop>
-        <source src="birthday.mp3" type="audio/mpeg" />
-    </audio>
+  <div class="card">
+    <h1 class="title">A Letter For You 💌</h1>
+    <p class="sub" id="tapHint">Tap the envelope to open it, pookie 👀</p>
 
-    <!-- 🎉 Content -->
-    <div class="container main-container">
-        <h1 class="glow">Every Ending Sparks a New Beginning</h1>
-        <p class="sub shiny-line" style="color: black;">
-            The end of this page is only the beginning of your next beautiful chapter. 💕
+    <span class="envelope" id="env" onclick="openLetter()">💌</span>
+
+    <div class="letter" id="letter">
+      <div class="paper">
+        <p class="salute">Dear Amna,</p>
+        <p>
+          Happy 21st birthday, pookie! 🩷 I hope you know how special you are —
+          not just today, but every single day. Thank you for every laugh,
+          every late-night talk, and every memory we've made together.
         </p>
-        <button onclick="location.href='memories.html'">See Memories 📸</button>
+        <p>
+          The world is brighter, softer, and a whole lot cuter with you in it.
+          Here's to 21 — may it be your most magical chapter yet. 🥂✨
+        </p>
+        <p class="sign">Even your silence talks to me 🫶<br>— Farhan</p>
+      </div>
+      <div style="text-align:center;">
+        <button class="btn" onclick="location.href='reasons.html'">Why you're so special ✨</button>
+      </div>
     </div>
+  </div>
 
-    <!-- 🔇 Mute Button -->
-    <button class="mute-btn" onclick="toggleMute()" id="muteBtn">🔊</button>
+  <button class="mute-btn" id="muteBtn">🔊</button>
 
-    <!-- 🔧 Script -->
-    <script>
-        const bgMusic = document.getElementById("bgMusic");
-        const muteBtn = document.getElementById("muteBtn");
-
-        function toggleMute() {
-            bgMusic.muted = !bgMusic.muted;
-            muteBtn.textContent = bgMusic.muted ? "🔇" : "🔊";
-        }
-    </script>
-    <script>
-        const bodyClass = document.body.className;
-        const navbar = document.querySelector('.navbar');
-
-        const navbarStyles = {
-            "main-page": "linear-gradient(90deg, #2c003e, #6a1b9a)",
-            "memories-page": "linear-gradient(90deg, #7b1fa2, #ba68c8)",
-            "finish-page": "linear-gradient(90deg, #6a1b9a, #25d6bf)",
-            "final-page": "linear-gradient(90deg, #fcb69f, #ff6ec4)",
-            "danger-page": "linear-gradient(90deg, #3a0000, #7b0000)"
-        };
-
-        if (navbar && navbarStyles[bodyClass]) {
-            navbar.style.background = navbarStyles[bodyClass];
-        }
-    </script>
-
-
-
+  <script src="script.js"></script>
+  <script>
+    function openLetter() {
+      document.getElementById('letter').classList.add('open');
+      document.getElementById('env').style.display = 'none';
+      document.getElementById('tapHint').style.display = 'none';
+      confettiBurst(160);
+    }
+  </script>
 </body>
-
 </html>

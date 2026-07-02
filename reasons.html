@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>21 Things About You, Amna ✨</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>">
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="banner">
+    <div class="scrolling-text">
+      <span>✨ 21 things that make you YOU ✨</span>
+      <span>🎀 One for every year 🎀</span>
+      <span>✨ 21 things that make you YOU ✨</span>
+      <span>🎀 One for every year 🎀</span>
+    </div>
+  </div>
+
+  <audio id="bgMusic" autoplay loop><source src="birthday.mp3" type="audio/mpeg" /></audio>
+
+  <div class="card">
+    <h1 class="title">21 Things About You ✨</h1>
+    <p class="sub">One for every year of you. Tap the card, pookie 🩷</p>
+
+    <div class="reason-card" id="reasonCard" onclick="nextReason()">
+      <div class="reason-num" id="reasonNum">🎁 ready?</div>
+      <div class="reason-text" id="reasonText">Tap to begin 🎀</div>
+    </div>
+
+    <div class="wish-reveal" id="doneBox">
+      <div class="inner">
+        <span class="script" style="font-size:1.6rem;color:var(--hotpink);">…and a thousand more I'll tell you in person. 🥹</span>
+      </div>
+      <button class="btn" onclick="location.href='memories.html'">Our memories 📸</button>
+    </div>
+  </div>
+
+  <button class="mute-btn" id="muteBtn">🔊</button>
+
+  <script src="script.js"></script>
+  <script>
+    /* ✏️ EDIT THESE — make them personal! Inside jokes hit hardest 🎯 */
+    const reasons = [
+      "Your laugh can fix literally any bad day 😂",
+      "You remember the tiniest details about people 🤍",
+      "You listen like the whole world stops for the other person 🎧",
+      "Your comebacks are dangerously fast 😭",
+      "You never let anyone feel left out 🫂",
+      "You give the best advice (even when I don't follow it) 🧠",
+      "Your food recommendations never miss 🍕",
+      "You can turn any boring day into a core memory ✨",
+      "You're the strongest person I know, quietly 💪",
+      "Your playlists are actually elite 🎶",
+      "You show up. Every single time. 🚪",
+      "You make fun of me exactly the right amount 😤",
+      "Your happy dance when food arrives 💃",
+      "You believe in people before they believe in themselves 🌱",
+      "You cry in movies and deny it every time 🎬",
+      "Your voice notes are 10 minutes minimum 🎙️",
+      "You defend your friends like a lawyer 👩‍⚖️",
+      "You make being kind look effortless 🕊️",
+      "Your overthinking is somehow adorable 🌀",
+      "You never judge, even when you totally could 🤝",
+      "Because you're Amna. That's the whole reason. 👑"
+    ];
+
+    let idx = -1;
+    const card = document.getElementById('reasonCard');
+    const numEl = document.getElementById('reasonNum');
+    const textEl = document.getElementById('reasonText');
+
+    function nextReason() {
+      if (idx >= reasons.length - 1) return;
+      idx++;
+      card.classList.remove('pop');
+      void card.offsetWidth; /* restart animation */
+      card.classList.add('pop');
+      numEl.textContent = (idx + 1) + ' / 21';
+      textEl.textContent = reasons[idx];
+      if (idx === reasons.length - 1) {
+        confettiBurst(280);
+        setTimeout(() => document.getElementById('doneBox').classList.add('show'), 700);
+      } else if ((idx + 1) % 7 === 0) {
+        confettiBurst(90);
+      }
+    }
+  </script>
+</body>
+</html>

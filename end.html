@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sealed Forever, Amna 💝</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌙</text></svg>">
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="end-page">
+  <div class="banner">
+    <div class="scrolling-text">
+      <span>💝 Seal your wish, Amna 💝</span>
+      <span>🌙 Under tonight's stars 🌙</span>
+      <span>💝 Seal your wish, Amna 💝</span>
+      <span>🌙 Under tonight's stars 🌙</span>
+    </div>
+  </div>
+
+  <audio id="bgMusic" autoplay loop><source src="birthday.mp3" type="audio/mpeg" /></audio>
+
+  <div class="shooting-star"></div>
+  <div class="shooting-star s2"></div>
+  <div class="shooting-star s3"></div>
+
+  <div class="card">
+    <h1 class="title">One Last Thing… 🌙</h1>
+    <p class="sub" id="hint">
+      Every birthday wish needs to be sealed to come true.<br>
+      Hold your wish in your heart, and tap below. 💫
+    </p>
+
+    <span class="big-heart" id="heart" onclick="sealWish()">💗</span>
+
+    <div class="sealed" id="sealed">
+      <p class="sub script" style="font-size:2rem;color:#ffb3c6;">Wish sealed forever ✨</p>
+      <p class="sub">
+        No matter where life takes you, Amna,
+        this little corner of the internet will always be yours —
+        proof that on your 21st birthday, someone thought
+        you deserved the whole universe. 🌌
+      </p>
+      <p class="sub">
+        Happy 21st Birthday, pookie.<br>
+        <b>You'll always have a best friend in me.</b> 🩷
+      </p>
+      <p class="sub script" style="font-size:1.6rem;color:#ffb3c6;">
+        Even your silence talks to me 🫶<br>— Farhan
+      </p>
+    </div>
+  </div>
+
+  <button class="mute-btn" id="muteBtn">🔊</button>
+
+  <script src="script.js"></script>
+  <script>
+    /* 🌟 starry sky */
+    for (let i = 0; i < 110; i++) {
+      const s = document.createElement('div');
+      s.className = 'star';
+      const size = Math.random() * 2.6 + 1;
+      s.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}vw;top:${Math.random()*100}vh;animation-delay:${Math.random()*3}s;animation-duration:${2+Math.random()*3}s`;
+      document.body.appendChild(s);
+    }
+
+    function sealWish() {
+      const heart = document.getElementById('heart');
+      if (heart.classList.contains('gone')) return;
+      heart.classList.add('gone');
+      document.getElementById('hint').style.display = 'none';
+      confettiBurst(320);
+      setTimeout(() => {
+        heart.style.display = 'none';
+        document.getElementById('sealed').classList.add('show');
+      }, 550);
+      setInterval(() => confettiBurst(50), 6000);
+    }
+  </script>
+</body>
+</html>

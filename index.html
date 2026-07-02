@@ -1,55 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-    <title>Warning ⚠️</title>
-    <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>⚠️ Warning, Pookie ⚠️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚨</text></svg>">
+  <link rel="stylesheet" href="style.css" />
 </head>
 
+<body class="intro-page">
+  <audio id="warning-audio" loop><source src="warning.mp3" type="audio/mpeg" /></audio>
+  <audio id="blast-audio" preload="auto"><source src="exploision.mp3" type="audio/mpeg" /></audio>
 
-<body class="danger-page">
-    <!-- Audio: plays once -->
-    <audio id="warning-audio">
-        <source src="warning.unknown" type="audio/mpeg" />
-    </audio>
+  <div class="card">
+    <span class="warn-emoji">🚨</span>
+    <h1 class="title">Warning, Amna!</h1>
+    <p class="sub">
+      This website contains <b>dangerously high levels of cuteness</b>. 🎀<br>
+      Side effects may include: uncontrollable smiling, happy tears,
+      and feeling extremely loved. 🥹💗
+    </p>
+    <p class="sub" style="opacity:0.85;">Enter only if you can handle it… 💅</p>
+    <button class="btn" onclick="blastAndGo()">I can handle it 💖</button>
+  </div>
 
-    <div class="container danger-container content-block" style="border-color: red;">
-        <h1 class="glow" style="color: azure;">🚨 Warning 🚨</h1>
-        <p class="sub shiny-line">This is a highly explosive Website... Click if you dare</p>
-        <button onclick="blastAndGo()" style="background-color: brown;">Enter ⚠️</button>
-    </div>
+  <div id="blast"><span class="boom">💖</span></div>
 
-    <div id="blast"></div>
+  <script src="script.js"></script>
+  <script>
+    const warnAudio = document.getElementById('warning-audio');
+    let entering = false;
 
-    <script>
-        // TRY playing audio on load
-        window.addEventListener("DOMContentLoaded", () => {
-            const audio = document.getElementById('warning-audio');
-            audio.loop = false;
+    /* 🚨 beeping siren loops while she's on this page */
+    window.addEventListener("DOMContentLoaded", () => {
+      warnAudio.volume = 0.6;
+      warnAudio.play().catch(() => {
+        /* browsers block autoplay until first tap — start beeping on first interaction */
+        const playOnce = () => {
+          if (!entering) warnAudio.play().catch(() => {});
+          document.removeEventListener('pointerdown', playOnce);
+        };
+        document.addEventListener('pointerdown', playOnce);
+      });
+    });
 
-            // Try to play immediately
-            audio.play().catch(() => {
-                // If blocked by browser, wait for user interaction
-                const playOnce = () => {
-                    audio.play();
-                    document.removeEventListener('click', playOnce);
-                };
-                document.addEventListener('click', playOnce);
-            });
-        });
-
-        // Blast animation then go
-        function blastAndGo() {
-            const blast = document.getElementById('blast');
-            blast.classList.add('explode');
-            setTimeout(() => {
-                window.location.href = 'main.html';
-            }, 600);
-        }
-    </script>
+    function blastAndGo() {
+      if (entering) return;
+      entering = true;
+      warnAudio.pause();
+      const boom = document.getElementById('blast-audio');
+      boom.volume = 0.8;
+      boom.play().catch(() => {});
+      confettiBurst(150);
+      document.getElementById('blast').classList.add('explode');
+      setTimeout(() => { window.location.href = 'main.html'; }, 900);
+    }
+  </script>
 </body>
-
 </html>
