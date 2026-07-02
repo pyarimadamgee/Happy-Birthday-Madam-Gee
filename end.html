@@ -70,12 +70,10 @@
       if (heart.classList.contains('gone')) return;
       heart.classList.add('gone');
       document.getElementById('hint').style.display = 'none';
-      confettiBurst(320);
       setTimeout(() => {
         heart.style.display = 'none';
         document.getElementById('sealed').classList.add('show');
       }, 550);
-      setInterval(() => confettiBurst(50), 6000);
     }
   </script>
 </body>
