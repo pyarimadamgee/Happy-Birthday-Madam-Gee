@@ -1,3 +1,3 @@
 # Happy-Birthday-Madam-Gee
 Click the link to see result
-https://wish-you-happy-birthday-github-sample.netlify.app/
+https://happy-birthday-madam-gee.netlify.app/
